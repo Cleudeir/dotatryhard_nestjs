@@ -10,10 +10,13 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-
+.env
+ .env.development
 # OS
 .DS_Store
-
+.env.js
+.env.ts
+.env
 # Tests
 /coverage
 /.nyc_output

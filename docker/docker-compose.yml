@@ -1,8 +1,9 @@
 version: '3'
 services:
+
   postgres:
-    container_name: demo_postgres
     image: 'postgres:14.1-alpine'
+    container_name: postgres_container
     environment:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
@@ -11,59 +12,23 @@ services:
     ports:
       - '5433:5432'
     volumes:
-      - ../../docker/postgresData:/var/lib/postgresql/data # Corrected volume path
+      - ./temp/postgresql:/var/lib/postgresql/data
+    networks:
+      - minha-rede
 
-  pgadmin4:
-    container_name: pgadmin4
+  pgadmin:
     image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: 'user@domain.com'
       PGADMIN_DEFAULT_PASSWORD: 'SuperSecret'
     ports:
-      - '81:80'
+      - '90:80'
     volumes:
-      - ../../docker/adminData:/var/lib/pgadmin4/data # Corrected volume path
-
-  app1:
-    image: local-project
-    container_name: container-app1
-    ports:
-      - '5000:5000' # Added missing host port
+      - ./temp/pgadmin4:/var/lib/pgadmin4/data
     networks:
       - minha-rede
-    depends_on:
-      - 'postgres'
-
-  app2:
-    image: local-project
-    container_name: container-app2
-    ports:
-      - '5001:5000' # Added missing host port
-    depends_on:
-      - 'postgres'
-
-  app3:
-    image: local-project
-    container_name: container-app3
-    ports:
-      - '5002:5000' # Added missing host port
-    depends_on:
-      - 'postgres'
-
-  nginx:
-    build:
-      dockerfile: ./docker/nginx.dockerfile
-      context: .
-    image: nginx
-    container_name: container-lb
-    ports:
-      - '80:80'
-    depends_on:
-      - 'app1'
-      - 'app2'
-      - 'app3'
-    volumes:
-      - ../../docker/nginx:/usr/share/nginx/html # Corrected volume path
 
 volumes:
   db:
