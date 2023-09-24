@@ -1,7 +1,10 @@
 # compiled output
 /dist
 /node_modules
-
+.env
+/src/conf/.env.ts
+.env.development
+/docker/temp
 # Logs
 logs
 *.log
@@ -10,14 +13,10 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-.env
- .env.development
+
 # OS
 .DS_Store
-.env.js
-.env.ts
-.env
-/docker/temp
+
 # Tests
 /coverage
 /.nyc_output

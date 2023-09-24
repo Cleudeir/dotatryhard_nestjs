@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { env } from '../ .env';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 import { MatchesModule } from './app/matches/matches.module';
 import { PlayersModule } from './app/players/players.module';
+import { env } from './conf/.env';
 
 console.log('port:>>>>>>>>>>>> ', env.PORT);
 
