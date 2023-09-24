@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePlayerDto } from './dto/create-player.dto';
@@ -28,16 +28,40 @@ export class PlayersService {
     return result;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} player`;
+  async findOne(accountId: number) {
+    console.time();
+    try {
+      const result = await this.playerRepository.findOneByOrFail({ accountId });
+
+      console.log('PlayersService :: findOne');
+      console.timeEnd();
+      return result;
+    } catch (error) {
+      throw new NotFoundException('Player not found');
+    }
   }
 
-  update(id: number, updatePlayerDto: UpdatePlayerDto) {
-    console.log('updatePlayerDto: ', updatePlayerDto);
-    return `This action updates a #${id} player`;
+  async update(accountId: number, data: UpdatePlayerDto) {
+    console.time();
+    try {
+      delete data.accountId;
+      await this.playerRepository.update(accountId, data);
+      console.log('PlayersService :: update');
+      console.timeEnd();
+      return 'updated';
+    } catch (error) {
+      throw error;
+    }
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} player`;
+  async remove(accountId: number) {
+    console.time();
+    try {
+      await this.playerRepository.delete(accountId);
+      console.log('PlayersService :: remove');
+      console.timeEnd();
+      return 'removed';
+    } catch (error) {
+      throw error;
+    }
   }
 }

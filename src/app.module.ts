@@ -1,12 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MatchesModule } from './app/matches/matches.module';
 import { PlayersModule } from './app/players/players.module';
 import { env } from './conf/.env';
-
-console.log('port:>>>>>>>>>>>> ', env.PORT);
 
 @Module({
   imports: [
@@ -23,9 +18,8 @@ console.log('port:>>>>>>>>>>>> ', env.PORT);
     }),
 
     PlayersModule,
-    MatchesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
