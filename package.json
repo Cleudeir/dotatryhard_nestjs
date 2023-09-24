@@ -19,8 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "image": "docker build -t local-project .",
-    "docker": "cd docker && docker-compose up -d && cd ..",
-    "nginx": "cd docker && docker-compose -f certbot.yml up  && cd .."
+    "server": "cd docker && docker-compose -f server.yml up  && cd .."
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
