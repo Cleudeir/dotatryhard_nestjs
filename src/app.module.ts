@@ -4,8 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { env } from '../ .env';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TasksModule } from './tasks/tasks.module';
-import { TweetsModule } from './tweets/tweets.module';
+
+import { MatchesModule } from './app/matches/matches.module';
+import { PlayersModule } from './app/players/players.module';
 
 console.log('port:>>>>>>>>>>>> ', env.PORT);
 
@@ -22,8 +23,9 @@ console.log('port:>>>>>>>>>>>> ', env.PORT);
       synchronize: true,
       logging: true,
     }),
-    TasksModule,
-    TweetsModule,
+
+    PlayersModule,
+    MatchesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

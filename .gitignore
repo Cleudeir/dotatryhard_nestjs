@@ -17,6 +17,7 @@ lerna-debug.log*
 .env.js
 .env.ts
 .env
+/docker/temp
 # Tests
 /coverage
 /.nyc_output

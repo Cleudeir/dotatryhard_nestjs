@@ -1,9 +1,18 @@
 {
     "cSpell.words": [
+        "avatarfull",
+        "certbot",
+        "certonly",
         "dotatryhard",
+        "eixoxprojetos",
+        "letsencrypt",
+        "loccountrycode",
         "nestjs",
+        "nginx",
+        "personaname",
         "postgres",
         "simform",
-        "typeorm"
+        "typeorm",
+        "webroot"
     ]
 }
