@@ -1,6 +1,12 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreatePlayerDto } from './create-player.dto';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class UpdatePlayerDto extends PartialType(CreatePlayerDto) {
-  accountId?: undefined;
+export class UpdatePlayerDto {
+  @ApiProperty({ nullable: true })
+  personaname?: string;
+
+  @ApiProperty({ nullable: true })
+  avatarfull?: string;
+
+  @ApiProperty({ nullable: true })
+  loccountrycode?: string;
 }

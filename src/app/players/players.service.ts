@@ -44,11 +44,9 @@ export class PlayersService {
   async update(accountId: number, data: UpdatePlayerDto) {
     console.time();
     try {
-      delete data.accountId;
       await this.playerRepository.update(accountId, data);
       console.log('PlayersService :: update');
       console.timeEnd();
-      return 'updated';
     } catch (error) {
       throw error;
     }
