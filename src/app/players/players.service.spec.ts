@@ -111,4 +111,36 @@ describe('PlayersService', () => {
       expect(playerRepository.findOneByOrFail).toBeCalledTimes(1);
     });
   });
+
+  describe('update', () => {
+    it('should success to update a player 1', async () => {
+      const data: CreatePlayerDto = {
+        accountId: 1,
+        avatarfull: 'avatar.image.com.br',
+        loccountrycode: 'Brazil',
+        personaname: 'Avatar',
+      };
+
+      const playerEntityMock = data as PlayerEntity;
+
+      jest
+        .spyOn(playerRepository, 'findOneByOrFail')
+        .mockResolvedValue(playerEntityMock);
+      const result = await playersService.findOne(1);
+      expect(result).toEqual(playerEntityMock);
+      expect(result).toBeDefined();
+      expect(playerRepository.findOneByOrFail).toBeCalledTimes(1);
+    });
+
+    it('should fail to find a player with ID 2', async () => {
+      jest
+        .spyOn(playerRepository, 'findOneByOrFail')
+        .mockRejectedValue(new NotFoundException('Player not found'));
+
+      const playerPromise = playersService.findOne(2);
+      const expectedErrorMessage = 'Player not found';
+      await expect(playerPromise).rejects.toThrowError(expectedErrorMessage);
+      expect(playerRepository.findOneByOrFail).toBeCalledTimes(1);
+    });
+  });
 });

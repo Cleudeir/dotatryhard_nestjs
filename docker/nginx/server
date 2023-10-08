@@ -1,8 +1,7 @@
 server {
-    server_name dotatryhard.eixoxprojetos.com.br;
+    server_name _;
 
-    location /api {
-
+    location / {
     proxy_pass http://192.168.1.105:3000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
@@ -11,18 +10,4 @@ server {
     proxy_cache_bypass $http_upgrade;
     }
 
-    location /admin {
-
-    proxy_pass http://192.168.1.105:90;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-
-    }
-
-
-    #slisten [::]:443 ssl ipv6only=on; # managed by Certbot
-    #slisten 443 ssl; # managed by Certbot
 }

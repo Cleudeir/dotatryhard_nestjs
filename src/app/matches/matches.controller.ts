@@ -15,63 +15,62 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { preName } from 'src/conf/.env';
-import { CreatePlayerDto } from './dto/create-player.dto';
-import { UpdatePlayerDto } from './dto/update-player.dto';
-import { PlayersService } from './players.service';
+import { CreateMatchDto } from './dto/create-match.dto';
+import { UpdateMatchDto } from './dto/update-match.dto';
+import { MatchesService } from './matches.service';
 
-@ApiTags('players')
-@Controller(preName + 'players')
-export class PlayersController {
-  constructor(private readonly playersService: PlayersService) {}
-
+@ApiTags('matches')
+@Controller(preName + 'matches')
+export class MatchesController {
+  constructor(private readonly matchesService: MatchesService) {}
+  //----
   @ApiResponse({
     status: 201,
     description: 'player created',
-    type: CreatePlayerDto,
+    type: CreateMatchDto,
   })
   @HttpCode(201)
   @Post()
-  create(@Body() body: CreatePlayerDto) {
-    console.log('createPlayerDto: ', body);
-    return this.playersService.create(body);
+  create(@Body() createMatchDto: CreateMatchDto) {
+    return this.matchesService.create(createMatchDto);
   }
-
+  //----
   @ApiResponse({
     status: 200,
     description: 'get all players',
-    type: CreatePlayerDto,
+    type: CreateMatchDto,
     isArray: true,
   })
   @Get()
   findAll() {
-    return this.playersService.findAll();
+    return this.matchesService.findAll();
   }
-
+  //----
   @ApiNotFoundResponse({ description: 'Player not found' })
   @ApiResponse({
     status: 200,
     description: 'get player by id',
-    type: CreatePlayerDto,
+    type: CreateMatchDto,
   })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.playersService.findOne(+id);
+    return this.matchesService.findOne(+id);
   }
-
+  //----
   @ApiNotFoundResponse({ description: 'Player not found' })
   @ApiResponse({
     status: 200,
     description: 'update player',
   })
   @ApiBody({
-    type: UpdatePlayerDto,
+    type: UpdateMatchDto,
   })
   @HttpCode(200)
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePlayerDto: UpdatePlayerDto) {
-    this.playersService.update(+id, updatePlayerDto);
+  update(@Param('id') id: string, @Body() updateMatchDto: UpdateMatchDto) {
+    return this.matchesService.update(+id, updateMatchDto);
   }
-
+  //----
   @ApiResponse({
     status: 201,
     description: 'delete player',
@@ -79,6 +78,6 @@ export class PlayersController {
   @HttpCode(201)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.playersService.remove(+id);
+    return this.matchesService.remove(+id);
   }
 }

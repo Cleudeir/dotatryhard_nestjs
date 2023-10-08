@@ -16,7 +16,7 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-
+nginx-certbot.env
 # Tests
 /coverage
 /.nyc_output

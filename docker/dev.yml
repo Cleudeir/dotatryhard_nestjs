@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: 'postgres'
       PGDATA: '/data/postgres'
     ports:
-      - '5433:5432'
+      - '5432:5432'
     volumes:
       - ./temp/postgresql:/var/lib/postgresql/data
     networks:
@@ -31,7 +31,17 @@ services:
       - ./temp/pgadmin4:/var/lib/pgadmin4/data
     networks:
       - minha-rede
-      
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis_container
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes: 
+      - ./temp/redis:/data
+
 volumes:
   db:
     driver: local

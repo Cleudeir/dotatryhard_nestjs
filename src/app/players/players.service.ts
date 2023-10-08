@@ -11,6 +11,7 @@ export class PlayersService {
     @InjectRepository(PlayerEntity)
     private readonly playerRepository: Repository<PlayerEntity>,
   ) {}
+
   async create(data: CreatePlayerDto): Promise<PlayerEntity> {
     console.time();
     const create = this.playerRepository.create(data);
@@ -51,6 +52,7 @@ export class PlayersService {
       throw error;
     }
   }
+
   async remove(accountId: number) {
     console.time();
     try {

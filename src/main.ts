@@ -9,11 +9,10 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('DotaTryHard')
     .setDescription('Ranking DOTA 2 Ability Draft')
-    .addTag('players')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
   await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
