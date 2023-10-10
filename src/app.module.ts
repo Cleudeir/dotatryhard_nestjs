@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MatchesModule } from './app/matches/matches.module';
+import { PlayersMatchesModule } from './app/players-matches/players-matches.module';
 import { PlayersModule } from './app/players/players.module';
 import { env } from './conf/.env';
-import { MatchesModule } from './app/matches/matches.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { MatchesModule } from './app/matches/matches.module';
     PlayersModule,
 
     MatchesModule,
+
+    PlayersMatchesModule,
   ],
   controllers: [],
   providers: [],
