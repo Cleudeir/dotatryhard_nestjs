@@ -1,8 +1,7 @@
-
-                # arm_dev.yml                
-                ## project structure
-                ```                    
-                dotatryhard_nestjs/
+# dotatryhard_nestjs              
+## project structure
+```                    
+dotatryhard_nestjs/
     docker-entrypoint.sh
     package-lock.json
     README.md
@@ -65,8 +64,8 @@
             server
             nginx.dockerfile
             server.d                
-                ```
-                ## Propósito do Projeto `dotatryhard_nestjs`
+```
+## Propósito do Projeto
 
 Este projeto é um aplicativo NestJS que gerencia dados de jogadores e partidas, provavelmente para um jogo ou plataforma similar.  Ele usa TypeORM com PostgreSQL para o banco de dados, Swagger para documentação da API, e ferramentas de teste como Jest e Supertest.  O projeto também utiliza Docker para implantação, com configurações separadas para desenvolvimento e produção, integrando Nginx na produção.
 
